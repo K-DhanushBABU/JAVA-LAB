@@ -1,3 +1,5 @@
+// c.	To sort the elements in ascending and descending order using bubble sort algorithm.
+
 public class prg1c {
     public static void main(String[] args) {
         int[] array = { 5, 3, 1, 4, 2 };
