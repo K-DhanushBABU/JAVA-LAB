@@ -1,21 +1,23 @@
+
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
 import java.util.LinkedList;
 
 class SharedBuffer {
     private LinkedList<Integer> buffer = new LinkedList<>();
-    private int capacity = 1;
+    private int capacity = 5;
     private int producedCount = 0;
     private int consumedCount = 0;
 
     public void produce() throws InterruptedException {
-        int value = 0;
+        int val = 0;
         while (producedCount < 5) {
             synchronized (this) {
-                while (buffer.size() == capacity) {
+                while (buffer.size() == capacity)
                     wait();
-                }
 
-                System.out.println("Producer produced: " + value);
-                buffer.add(value++);
+                System.out.println("Produced Producer " + val);
+                buffer.add(val++);
                 producedCount++;
                 notify();
 
@@ -25,14 +27,15 @@ class SharedBuffer {
     }
 
     public void consume() throws InterruptedException {
+
         while (consumedCount < 5) {
             synchronized (this) {
-                while (buffer.isEmpty()) {
+                while (buffer.isEmpty())
                     wait();
-                }
 
-                int consumedValue = buffer.removeFirst();
-                System.out.println("Consumer consumed: " + consumedValue);
+                int removedvalue = buffer.removeFirst();
+                System.out.println("consumer consumed " + removedvalue);
+
                 consumedCount++;
                 notify();
 
@@ -40,29 +43,34 @@ class SharedBuffer {
             }
         }
     }
+
 }
 
 public class prg7 {
+
     public static void main(String[] args) {
-        SharedBuffer sharedBuffer = new SharedBuffer();
+        SharedBuffer sharedbuffer = new SharedBuffer();
 
-        Thread producerThread = new Thread(() -> {
+        Thread producethread = new Thread(() -> {
             try {
-                sharedBuffer.produce();
+                sharedbuffer.produce();
             } catch (InterruptedException e) {
                 e.printStackTrace();
+
             }
         });
 
-        Thread consumerThread = new Thread(() -> {
+        Thread consumethread = new Thread(() -> {
             try {
-                sharedBuffer.consume();
+                sharedbuffer.consume();
             } catch (InterruptedException e) {
                 e.printStackTrace();
+
             }
         });
 
-        producerThread.start();
-        consumerThread.start();
+        producethread.start();
+        consumethread.start();
+
     }
 }
