@@ -17,7 +17,7 @@ class Bank {
 
     void displayDetails() {
         System.out.println("Name: " + this.name);
-        System.out.println("Account Number: " + this.accountNumber);
+        System.out.println("Account Number" + this.accountNumber);
         System.out.println("Balance: " + this.balance);
     }
 
@@ -55,23 +55,38 @@ class CanaraBank extends Bank {
 
 public class prg6 {
     public static void main(String[] args) {
-        Bank cityBank = new CityBank();
-        Bank sbiBank = new SBIBank();
-        Bank canaraBank = new CanaraBank();
+        SBIBank[] sbi = new SBIBank[2];
+        CityBank[] citi = new CityBank[2];
+        CanaraBank[] canara = new CanaraBank[2];
 
-        System.out.println("Enter City Bank details:");
-        cityBank.readDetails();
-        cityBank.displayDetails();
-        cityBank.calculateInterest();
+        System.out.println("Enter SBI Bank details:");
+        for (int i = 0; i < 2; i++) {
+            sbi[i] = new SBIBank();
+            System.out.println("Account:" + (i + 1));
+            sbi[i].readDetails();
+            sbi[i].displayDetails();
+            sbi[i].calculateInterest();
 
-        System.out.println("\nEnter SBI Bank details:");
-        sbiBank.readDetails();
-        sbiBank.displayDetails();
-        sbiBank.calculateInterest();
+        }
+
+        System.out.println("\nEnter canara Bank details:");
+        for (int i = 0; i < 2; i++) {
+            canara[i] = new CanaraBank();
+            System.out.println("Account:" + (i + 1));
+            canara[i].readDetails();
+            canara[i].displayDetails();
+            canara[i].calculateInterest();
+
+        }
 
         System.out.println("\nEnter Canara Bank details:");
-        canaraBank.readDetails();
-        canaraBank.displayDetails();
-        canaraBank.calculateInterest();
+        for (int i = 0; i < 2; i++) {
+            citi[i] = new CityBank();
+            System.out.println("Account:" + (i + 1));
+            citi[i].readDetails();
+            citi[i].displayDetails();
+            citi[i].calculateInterest();
+
+        }
     }
 }
