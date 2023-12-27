@@ -1,4 +1,4 @@
-public class prg3a {
+public class prg1c {
     public static void main(String[] args) {
         int[] array = { 5, 3, 1, 4, 2 };
         int n = array.length;
