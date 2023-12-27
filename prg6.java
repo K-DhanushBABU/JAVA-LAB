@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class prg6 {
     public void userStrCmp(String S1, String S2) {
-        if (S1.compareTo(S2) == 0)
+        if (S1.equals(S2))
             System.out.println("\nThe entered two Strings are the same");
         else
             System.out.println("\nThe entered two strings are not same");
