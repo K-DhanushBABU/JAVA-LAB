@@ -1,54 +1,77 @@
-// Write a Java program using compile time polymorphism to compare two strings.
-// The program should implement two different versions of String comparisons
-// 1. The first version compares complete first string with the second one
-// 2. The second version should compare only specified number of characters from first string with the second string
-
 import java.util.Scanner;
 
+class Bank {
+    String name;
+    long accountNumber;
+    double balance;
+
+    void readDetails() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter name: ");
+        this.name = scanner.nextLine();
+        System.out.println("Enter account number: ");
+        this.accountNumber = scanner.nextLong();
+        System.out.println("Enter balance: ");
+        this.balance = scanner.nextDouble();
+    }
+
+    void displayDetails() {
+        System.out.println("Name: " + this.name);
+        System.out.println("Account Number: " + this.accountNumber);
+        System.out.println("Balance: " + this.balance);
+    }
+
+    void calculateInterest() {
+
+    };
+}
+
+class CityBank extends Bank {
+    @Override
+    void calculateInterest() {
+        double rate = 8.5; // Specific interest rate for City Bank
+        double interest = (balance * rate) / 100;
+        System.out.println("Interest earned at City Bank: " + interest);
+    }
+}
+
+class SBIBank extends Bank {
+    @Override
+    void calculateInterest() {
+        double rate = 7.5; // Specific interest rate for SBI Bank
+        double interest = (balance * rate) / 100;
+        System.out.println("Interest earned at SBI Bank: " + interest);
+    }
+}
+
+class CanaraBank extends Bank {
+    @Override
+    void calculateInterest() {
+        double rate = 6.5; // Specific interest rate for Canara Bank
+        double interest = (balance * rate) / 100;
+        System.out.println("Interest earned at Canara Bank: " + interest);
+    }
+}
+
 public class prg6 {
-    public void userStrCmp(String S1, String S2) {
-        if (S1.equals(S2))
-            System.out.println("\nThe entered two Strings are the same");
-        else
-            System.out.println("\nThe entered two strings are not same");
-    }
-
-    public void userStrCmp(String S1, String S2, int n) {
-        int flag = 0;
-        for (int i = 0; i < n; i++) {
-            if (S1.charAt(i) == S2.charAt(i))
-                flag = 1;
-            else {
-                flag = 0;
-                break;
-            }
-        }
-
-        if (flag == 1)
-            System.out.println("First " + n + " characters of both the strings are the same");
-        else
-            System.out.println("First " + n + " characters of both the strings are not the same");
-    }
-
     public static void main(String[] args) {
-        String S1, S2;
-        prg6 obj = new prg6();
-        Scanner sc = new Scanner(System.in);
+        Bank cityBank = new CityBank();
+        Bank sbiBank = new SBIBank();
+        Bank canaraBank = new CanaraBank();
 
-        System.out.print("Enter a string: ");
-        S1 = sc.nextLine();
-        System.out.print("Enter another string: ");
-        S2 = sc.nextLine();
-        System.out.print("Enter the number of characters to be compared in both the strings: ");
-        int n = sc.nextInt();
+        System.out.println("Enter City Bank details:");
+        cityBank.readDetails();
+        cityBank.displayDetails();
+        cityBank.calculateInterest();
 
-        obj.userStrCmp(S1, S2);
+        System.out.println("\nEnter SBI Bank details:");
+        sbiBank.readDetails();
+        sbiBank.displayDetails();
+        sbiBank.calculateInterest();
 
-        if (n > S1.length() || n > S2.length())
-            System.out.println("Cannot compare strings more than their length");
-        else
-            obj.userStrCmp(S1, S2, n);
-
-        sc.close();
+        System.out.println("\nEnter Canara Bank details:");
+        canaraBank.readDetails();
+        canaraBank.displayDetails();
+        canaraBank.calculateInterest();
     }
 }
